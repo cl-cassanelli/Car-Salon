@@ -34,6 +34,7 @@ public class Frame extends JFrame {
                 String cambio = fe.getCambio();
                 String bagagliaio = null;
                 String alimentazione = fe.getAlimentazione();
+                int numeroPosti = fe.getNumeroPosti();
 
                 switch (fe.getBagagliaio()) {
                     case 0:
@@ -49,7 +50,8 @@ public class Frame extends JFrame {
                         break;
                 }
 
-                textAreaPanel.appendiTesto("Marca: " + marca + "\nModello: " + modello + "\nVenduta: " + vendita + "\nTarga: " + targa + "\nCambio: " + cambio + "\nBagagliaio: " + bagagliaio + "\nAlimentazione: " + alimentazione + "\n");
+                textAreaPanel.appendiTesto("Marca: " + marca + "\nModello: " + modello + "\nVenduta: " + vendita + "\nTarga: " + targa + 
+                                            "\nCambio: " + cambio + "\nBagagliaio: " + bagagliaio + "\nAlimentazione: " + alimentazione + "\nPosti: " + numeroPosti + "\n");
             }
         });
 

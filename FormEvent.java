@@ -9,12 +9,13 @@ public class FormEvent extends EventObject {
     private String cambio;
     private int bagagliaio;
     private String alimentazione;
+    private int numeroPosti;
 
     public FormEvent(Object source) {
         super(source);
     }
 
-    public FormEvent(Object surce, String marca, String modello, boolean vendita, String targa, String cambio, int bagagliaio, String alimentazione){
+    public FormEvent(Object surce, String marca, String modello, boolean vendita, String targa, String cambio, int bagagliaio, String alimentazione, int numeroPosti){
         super(surce);
         this.marca = marca;
         this.modello = modello;
@@ -23,7 +24,12 @@ public class FormEvent extends EventObject {
         this.cambio = cambio;
         this.bagagliaio = bagagliaio;
         this.alimentazione = alimentazione;
+        this.numeroPosti = numeroPosti;
     }
+
+    public int getNumeroPosti() { return numeroPosti; }
+
+    public void setNumeroPosti(int numeroPosti) { this.numeroPosti = numeroPosti; }
 
     public String getAlimentazione(){ return alimentazione; }
 
@@ -31,7 +37,7 @@ public class FormEvent extends EventObject {
 
     public String getCambio(){ return cambio; }
 
-    public int getBagagliaio() { return this.bagagliaio; }
+    public int getBagagliaio() { return bagagliaio; }
 
     public void setBagagliaio(int bagagliaio) { this.bagagliaio = bagagliaio; }
         

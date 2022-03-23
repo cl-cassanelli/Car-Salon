@@ -29,6 +29,9 @@ public class PannelloForm extends JPanel {
     private JLabel labelAlimentazione;
     private JComboBox menuAlimentazione;
 
+    private JLabel labelPosti;
+    private JSpinner spinnerPosti;
+
     private JButton bottoneAggiungi;
 
     private FormListener formListener;
@@ -111,6 +114,14 @@ public class PannelloForm extends JPanel {
         menuAlimentazione.setSelectedIndex(2);
         menuAlimentazione.setEditable(true);
 
+        //Numero posti
+        labelPosti = new JLabel("Numero posti: ");
+
+        spinnerPosti = new JSpinner();
+
+        SpinnerNumberModel modelloSpinner = new SpinnerNumberModel(1,1,9,1);
+        spinnerPosti.setModel(modelloSpinner);
+
         //Bottone
         bottoneAggiungi = new JButton("Aggiungi!");
 
@@ -124,8 +135,9 @@ public class PannelloForm extends JPanel {
                 String cambio = gruppoRadioCambio.getSelection().getActionCommand();
                 int bagagliaio = ((Bagagliaio) listaBagagliaio.getSelectedValue()).getId();
                 String alimentazione = (String) menuAlimentazione.getSelectedItem();
+                int numeroPosti = (int) spinnerPosti.getValue();
 
-                FormEvent  formEvent = new FormEvent(this, marca, modello, vendita, targa, cambio, bagagliaio, alimentazione);
+                FormEvent  formEvent = new FormEvent(this, marca, modello, vendita, targa, cambio, bagagliaio, alimentazione, numeroPosti);
 
                 if(formListener != null){
                     formListener.formEventListener(formEvent);
@@ -253,9 +265,35 @@ public class PannelloForm extends JPanel {
 
         add(listaBagagliaio, gbc);
 
-        //RIGA 6: lable alimentazione
+        //RIGA 6: lable posti
         gbc.gridx = 0;
         gbc.gridy = 5;
+
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+
+        gbc.anchor = GridBagConstraints.LINE_END;
+
+        gbc.insets = new Insets(0,0,0,5);
+
+        add(labelPosti, gbc);
+
+        //RIGA 6: spinner posti
+        gbc.gridx = 1;
+        gbc.gridy = 5;
+
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+
+        gbc.anchor = GridBagConstraints.LINE_START;
+
+        gbc.insets = new Insets(0,0,0,0);
+
+        add(spinnerPosti, gbc);
+
+        //RIGA 7: lable alimentazione
+        gbc.gridx = 0;
+        gbc.gridy = 6;
 
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
@@ -266,9 +304,9 @@ public class PannelloForm extends JPanel {
 
         add(labelAlimentazione, gbc);
 
-        //RIGA 6: combobox alimentazione
+        //RIGA 7: combobox alimentazione
         gbc.gridx = 1;
-        gbc.gridy = 5;
+        gbc.gridy = 6;
 
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
@@ -279,9 +317,9 @@ public class PannelloForm extends JPanel {
 
         add(menuAlimentazione, gbc);
 
-        //RIGA 5: lable vendita
+        //RIGA 6: lable vendita
         gbc.gridx = 0;
-        gbc.gridy = 6;
+        gbc.gridy = 7;
 
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
@@ -292,9 +330,9 @@ public class PannelloForm extends JPanel {
 
         add(lableVendita, gbc);
 
-        //RIGA 5: checkbox vendita
+        //RIGA 6: checkbox vendita
         gbc.gridx = 1;
-        gbc.gridy = 6;
+        gbc.gridy = 7;
 
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
@@ -305,9 +343,9 @@ public class PannelloForm extends JPanel {
 
         add(checkVendita, gbc);
 
-        //RIGA 6: lable targa
+        //RIGA 7: lable targa
         gbc.gridx = 0;
-        gbc.gridy = 7;
+        gbc.gridy = 8;
 
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
@@ -318,9 +356,9 @@ public class PannelloForm extends JPanel {
 
         add(labelTarga, gbc);
 
-        //RIGA 6: field targa
+        //RIGA 7: field targa
         gbc.gridx = 1;
-        gbc.gridy = 7;
+        gbc.gridy = 8;
 
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
@@ -333,7 +371,7 @@ public class PannelloForm extends JPanel {
 
         //RIGA FINALE: bottone
         gbc.gridx = 0;
-        gbc.gridy = 8;
+        gbc.gridy = 9;
 
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
