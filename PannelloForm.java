@@ -32,6 +32,9 @@ public class PannelloForm extends JPanel {
     private JLabel labelPosti;
     private JSpinner spinnerPosti;
 
+    private JLabel labelCilindrata;
+    private JSlider sliderCilindrata;
+
     private JButton bottoneAggiungi;
 
     private FormListener formListener;
@@ -122,6 +125,21 @@ public class PannelloForm extends JPanel {
         SpinnerNumberModel modelloSpinner = new SpinnerNumberModel(1,1,9,1);
         spinnerPosti.setModel(modelloSpinner);
 
+        //Cilindrata 
+        labelCilindrata = new JLabel("Cilindrata: ");
+
+        sliderCilindrata = new JSlider(1000, 2000, 1500);
+
+        sliderCilindrata.setPreferredSize(new Dimension(170,50));
+
+        sliderCilindrata.setMajorTickSpacing(250);
+        sliderCilindrata.setMinorTickSpacing(50);
+
+        sliderCilindrata.setPaintTicks(true);
+        sliderCilindrata.setPaintLabels(true);
+
+        sliderCilindrata.setSnapToTicks(true);
+
         //Bottone
         bottoneAggiungi = new JButton("Aggiungi!");
 
@@ -136,8 +154,9 @@ public class PannelloForm extends JPanel {
                 int bagagliaio = ((Bagagliaio) listaBagagliaio.getSelectedValue()).getId();
                 String alimentazione = (String) menuAlimentazione.getSelectedItem();
                 int numeroPosti = (int) spinnerPosti.getValue();
+                int cilindrata = sliderCilindrata.getValue();
 
-                FormEvent  formEvent = new FormEvent(this, marca, modello, vendita, targa, cambio, bagagliaio, alimentazione, numeroPosti);
+                FormEvent  formEvent = new FormEvent(this, marca, modello, vendita, targa, cambio, bagagliaio, alimentazione, numeroPosti, cilindrata);
 
                 if(formListener != null){
                     formListener.formEventListener(formEvent);
@@ -317,7 +336,7 @@ public class PannelloForm extends JPanel {
 
         add(menuAlimentazione, gbc);
 
-        //RIGA 6: lable vendita
+        //RIGA 8: lable cilindrata
         gbc.gridx = 0;
         gbc.gridy = 7;
 
@@ -328,9 +347,9 @@ public class PannelloForm extends JPanel {
 
         gbc.insets = new Insets(0,0,0,5);
 
-        add(lableVendita, gbc);
+        add(labelCilindrata, gbc);
 
-        //RIGA 6: checkbox vendita
+        //RIGA 8: slider cilindrata
         gbc.gridx = 1;
         gbc.gridy = 7;
 
@@ -341,9 +360,10 @@ public class PannelloForm extends JPanel {
 
         gbc.insets = new Insets(0,0,0,0);
 
-        add(checkVendita, gbc);
+        add(sliderCilindrata, gbc);
 
-        //RIGA 7: lable targa
+
+        //RIGA 9: lable vendita
         gbc.gridx = 0;
         gbc.gridy = 8;
 
@@ -354,11 +374,37 @@ public class PannelloForm extends JPanel {
 
         gbc.insets = new Insets(0,0,0,5);
 
-        add(labelTarga, gbc);
+        add(lableVendita, gbc);
 
-        //RIGA 7: field targa
+        //RIGA 9: checkbox vendita
         gbc.gridx = 1;
         gbc.gridy = 8;
+
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+
+        gbc.anchor = GridBagConstraints.LINE_START;
+
+        gbc.insets = new Insets(0,0,0,0);
+
+        add(checkVendita, gbc);
+
+        //RIGA 10: lable targa
+        gbc.gridx = 0;
+        gbc.gridy = 9;
+
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+
+        gbc.anchor = GridBagConstraints.LINE_END;
+
+        gbc.insets = new Insets(0,0,0,5);
+
+        add(labelTarga, gbc);
+
+        //RIGA 10: field targa
+        gbc.gridx = 1;
+        gbc.gridy = 9;
 
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
@@ -371,7 +417,7 @@ public class PannelloForm extends JPanel {
 
         //RIGA FINALE: bottone
         gbc.gridx = 0;
-        gbc.gridy = 9;
+        gbc.gridy = 10;
 
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;

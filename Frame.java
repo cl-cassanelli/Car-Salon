@@ -35,6 +35,7 @@ public class Frame extends JFrame {
                 String bagagliaio = null;
                 String alimentazione = fe.getAlimentazione();
                 int numeroPosti = fe.getNumeroPosti();
+                int cilindrata = fe.getCilindrata();
 
                 switch (fe.getBagagliaio()) {
                     case 0:
@@ -51,7 +52,8 @@ public class Frame extends JFrame {
                 }
 
                 textAreaPanel.appendiTesto("Marca: " + marca + "\nModello: " + modello + "\nVenduta: " + vendita + "\nTarga: " + targa + 
-                                            "\nCambio: " + cambio + "\nBagagliaio: " + bagagliaio + "\nAlimentazione: " + alimentazione + "\nPosti: " + numeroPosti + "\n");
+                                            "\nCambio: " + cambio + "\nBagagliaio: " + bagagliaio + "\nAlimentazione: " + alimentazione + 
+                                            "\nPosti: " + numeroPosti + "\nCilindrata: " + cilindrata + "\n");
             }
         });
 
