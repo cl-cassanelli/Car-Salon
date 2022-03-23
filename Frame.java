@@ -1,5 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.*;
 
 public class Frame extends JFrame {
 
@@ -12,6 +14,8 @@ public class Frame extends JFrame {
         super("Titolo finestra");
 
         setLayout(new BorderLayout());
+
+        setJMenuBar(creaBarraMenu());
 
         barraStrumenti = new BarraStrumenti();
         textAreaPanel = new TextAreaPanel();
@@ -67,5 +71,49 @@ public class Frame extends JFrame {
         //setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+    }
+
+    private JMenuBar creaBarraMenu(){
+        JMenuBar barraMenu = new JMenuBar();
+
+        JMenu menuFile = new JMenu("File");
+
+        JMenuItem menuItemImporta = new JMenuItem("Importa...", new ImageIcon("./img/import.png")); //img size: 16px
+        JMenuItem menuItemEsporta = new JMenuItem("Esporta...", new ImageIcon("./img/export.png")); //img size: 16px
+        JMenuItem menuItemEsci = new JMenuItem("Esci");
+
+        menuFile.add(menuItemImporta);
+        menuFile.add(menuItemEsporta);
+        menuFile.addSeparator();
+        menuFile.add(menuItemEsci);
+
+        JMenu menuFinestra = new JMenu("Finestra");
+
+        JMenu menuMostra = new JMenu("Mostra");
+
+        JMenuItem menuItemProblemi = new JMenuItem("Problemi");
+
+        JCheckBoxMenuItem menuItemMostraForm = new JCheckBoxMenuItem("Mostra Form");
+        menuItemMostraForm.setSelected(true);
+
+        menuItemMostraForm.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem) e.getSource();
+                pannelloForm.setVisible(menuItem.isSelected());
+            }
+        });
+
+        menuMostra.add(menuItemProblemi);
+        menuMostra.add(menuItemMostraForm);
+
+        menuFinestra.add(menuMostra);
+
+
+        barraMenu.add(menuFile);
+        barraMenu.add(menuFinestra);
+
+
+        return barraMenu;
     }
 }
