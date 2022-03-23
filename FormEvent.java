@@ -8,12 +8,13 @@ public class FormEvent extends EventObject {
     private String targa;
     private String cambio;
     private int bagagliaio;
+    private String alimentazione;
 
     public FormEvent(Object source) {
         super(source);
     }
 
-    public FormEvent(Object surce, String marca, String modello, boolean vendita, String targa, String cambio, int bagagliaio){
+    public FormEvent(Object surce, String marca, String modello, boolean vendita, String targa, String cambio, int bagagliaio, String alimentazione){
         super(surce);
         this.marca = marca;
         this.modello = modello;
@@ -21,55 +22,35 @@ public class FormEvent extends EventObject {
         this.targa = targa;
         this.cambio = cambio;
         this.bagagliaio = bagagliaio;
+        this.alimentazione = alimentazione;
     }
 
-    public String getCambio(){
-        return cambio;
-    }
+    public String getAlimentazione(){ return alimentazione; }
 
-    public int getBagagliaio() {
-        return this.bagagliaio;
-    }
+    public void setAlimentazione(String alimentazione){ this.alimentazione = alimentazione; }
 
-    public void setBagagliaio(int bagagliaio) {
-        this.bagagliaio = bagagliaio;
-    }
+    public String getCambio(){ return cambio; }
+
+    public int getBagagliaio() { return this.bagagliaio; }
+
+    public void setBagagliaio(int bagagliaio) { this.bagagliaio = bagagliaio; }
         
+    public void setCambio(String cambio){ this.cambio = cambio; }
 
-    public void setCambio(String cambio){
-        this.cambio = cambio;
-    }
+    public boolean isVendita(){ return vendita; }
 
-    public boolean isVendita(){
-        return vendita;
-    }
+    public void setVendita(boolean vendita){ this.vendita = vendita; }
 
-    public void setVendita(boolean vendita){
-        this.vendita = vendita;
-    }
+    public String getTarga(){ return targa; }
 
-    public String getTarga(){
-        return targa;
-    }
+    public void setTarga(String targa){ this.targa = targa; }
 
-    public void setTarga(String targa){
-        this.targa = targa;
-    }
+    public String getMarca(){ return marca; }
 
-    public String getMarca(){
-        return marca;
-    }
+    public void setMarca(String marca){ this.marca = marca; }
 
-    public void setMarca(String marca){
-        this.marca = marca;
-    }
+    public String getModello(){ return modello; }
 
-    public String getModello(){
-        return modello;
-    }
-
-    public void setModello(String modello){
-        this.modello = modello;
-    }
+    public void setModello(String modello){ this.modello = modello; }
     
 }

@@ -33,6 +33,7 @@ public class Frame extends JFrame {
                 String targa = fe.getTarga();
                 String cambio = fe.getCambio();
                 String bagagliaio = null;
+                String alimentazione = fe.getAlimentazione();
 
                 switch (fe.getBagagliaio()) {
                     case 0:
@@ -48,7 +49,7 @@ public class Frame extends JFrame {
                         break;
                 }
 
-                textAreaPanel.appendiTesto("Marca: " + marca + "\nModello: " + modello + "\nVenduta: " + vendita + "\nTarga: " + targa + "\nCambio: " + cambio + "\nBagagliaio: " + bagagliaio + "\n");
+                textAreaPanel.appendiTesto("Marca: " + marca + "\nModello: " + modello + "\nVenduta: " + vendita + "\nTarga: " + targa + "\nCambio: " + cambio + "\nBagagliaio: " + bagagliaio + "\nAlimentazione: " + alimentazione + "\n");
             }
         });
 

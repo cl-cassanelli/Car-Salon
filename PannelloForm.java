@@ -26,6 +26,9 @@ public class PannelloForm extends JPanel {
     private JLabel labelBagagliaio;
     private JList listaBagagliaio;
 
+    private JLabel labelAlimentazione;
+    private JComboBox menuAlimentazione;
+
     private JButton bottoneAggiungi;
 
     private FormListener formListener;
@@ -99,6 +102,15 @@ public class PannelloForm extends JPanel {
 
         listaBagagliaio.setModel(modelloBagagliaio);
 
+        //Alimentazione
+        labelAlimentazione = new JLabel("Alimentazione: ");
+
+        String[] opzioniAlimentazioni = {"Benzina", "Disel","Elettrica", "Ibrida", "Metano", "GPL"};
+
+        menuAlimentazione = new JComboBox(opzioniAlimentazioni);
+        menuAlimentazione.setSelectedIndex(2);
+        menuAlimentazione.setEditable(true);
+
         //Bottone
         bottoneAggiungi = new JButton("Aggiungi!");
 
@@ -111,8 +123,9 @@ public class PannelloForm extends JPanel {
                 String targa = fieldTarga.getText();
                 String cambio = gruppoRadioCambio.getSelection().getActionCommand();
                 int bagagliaio = ((Bagagliaio) listaBagagliaio.getSelectedValue()).getId();
+                String alimentazione = (String) menuAlimentazione.getSelectedItem();
 
-                FormEvent  formEvent = new FormEvent(this, marca, modello, vendita, targa, cambio, bagagliaio);
+                FormEvent  formEvent = new FormEvent(this, marca, modello, vendita, targa, cambio, bagagliaio, alimentazione);
 
                 if(formListener != null){
                     formListener.formEventListener(formEvent);
@@ -240,9 +253,35 @@ public class PannelloForm extends JPanel {
 
         add(listaBagagliaio, gbc);
 
-        //RIGA 5: lable vendita
+        //RIGA 6: lable alimentazione
         gbc.gridx = 0;
         gbc.gridy = 5;
+
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+
+        gbc.anchor = GridBagConstraints.LINE_END;
+
+        gbc.insets = new Insets(0,0,0,5);
+
+        add(labelAlimentazione, gbc);
+
+        //RIGA 6: combobox alimentazione
+        gbc.gridx = 1;
+        gbc.gridy = 5;
+
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+
+        gbc.anchor = GridBagConstraints.LINE_START;
+
+        gbc.insets = new Insets(0,0,0,0);
+
+        add(menuAlimentazione, gbc);
+
+        //RIGA 5: lable vendita
+        gbc.gridx = 0;
+        gbc.gridy = 6;
 
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
@@ -255,7 +294,7 @@ public class PannelloForm extends JPanel {
 
         //RIGA 5: checkbox vendita
         gbc.gridx = 1;
-        gbc.gridy = 5;
+        gbc.gridy = 6;
 
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
@@ -268,7 +307,7 @@ public class PannelloForm extends JPanel {
 
         //RIGA 6: lable targa
         gbc.gridx = 0;
-        gbc.gridy = 6;
+        gbc.gridy = 7;
 
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
@@ -281,7 +320,7 @@ public class PannelloForm extends JPanel {
 
         //RIGA 6: field targa
         gbc.gridx = 1;
-        gbc.gridy = 6;
+        gbc.gridy = 7;
 
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
@@ -294,7 +333,7 @@ public class PannelloForm extends JPanel {
 
         //RIGA FINALE: bottone
         gbc.gridx = 0;
-        gbc.gridy = 7;
+        gbc.gridy = 8;
 
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
