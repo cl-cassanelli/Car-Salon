@@ -11,12 +11,13 @@ public class FormEvent extends EventObject {
     private String alimentazione;
     private int numeroPosti;
     private int cilindrata;
+    private int colore;
 
     public FormEvent(Object source) {
         super(source);
     }
 
-    public FormEvent(Object surce, String marca, String modello, boolean vendita, String targa, String cambio, int bagagliaio, String alimentazione, int numeroPosti, int cilindrata){
+    public FormEvent(Object surce, String marca, String modello, boolean vendita, String targa, String cambio, int bagagliaio, String alimentazione, int numeroPosti, int cilindrata, int colore){
         super(surce);
         this.marca = marca;
         this.modello = modello;
@@ -27,7 +28,12 @@ public class FormEvent extends EventObject {
         this.alimentazione = alimentazione;
         this.numeroPosti = numeroPosti;
         this.cilindrata = cilindrata;
+        this.colore = colore;
     }
+
+    public int getColore() { return colore; }
+
+    public void setColore(int colore) { this.colore = colore; }
 
     public int getCilindrata() { return cilindrata; }
 

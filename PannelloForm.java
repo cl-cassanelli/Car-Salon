@@ -35,6 +35,9 @@ public class PannelloForm extends JPanel {
     private JLabel labelCilindrata;
     private JSlider sliderCilindrata;
 
+    private JLabel labelColor;
+    private JButton buttonColore;
+
     private JButton bottoneAggiungi;
 
     private FormListener formListener;
@@ -140,6 +143,18 @@ public class PannelloForm extends JPanel {
 
         sliderCilindrata.setSnapToTicks(true);
 
+        //Color chooser
+        labelColor = new JLabel("Colore auto: ");
+
+        buttonColore = new JButton("Selezione colore!");
+        buttonColore.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                Color colore = JColorChooser.showDialog(new JFrame(), "Seleziona un colore...", Color.RED);
+                buttonColore.setBackground(colore);
+            }
+        });
+
         //Bottone
         bottoneAggiungi = new JButton("Aggiungi!");
 
@@ -155,8 +170,9 @@ public class PannelloForm extends JPanel {
                 String alimentazione = (String) menuAlimentazione.getSelectedItem();
                 int numeroPosti = (int) spinnerPosti.getValue();
                 int cilindrata = sliderCilindrata.getValue();
+                int colore = buttonColore.getBackground().getRGB();
 
-                FormEvent  formEvent = new FormEvent(this, marca, modello, vendita, targa, cambio, bagagliaio, alimentazione, numeroPosti, cilindrata);
+                FormEvent  formEvent = new FormEvent(this, marca, modello, vendita, targa, cambio, bagagliaio, alimentazione, numeroPosti, cilindrata, colore);
 
                 if(formListener != null){
                     formListener.formEventListener(formEvent);
@@ -362,8 +378,7 @@ public class PannelloForm extends JPanel {
 
         add(sliderCilindrata, gbc);
 
-
-        //RIGA 9: lable vendita
+        //RIGA 9: lable colore
         gbc.gridx = 0;
         gbc.gridy = 8;
 
@@ -374,9 +389,9 @@ public class PannelloForm extends JPanel {
 
         gbc.insets = new Insets(0,0,0,5);
 
-        add(lableVendita, gbc);
+        add(labelColor, gbc);
 
-        //RIGA 9: checkbox vendita
+        //RIGA 9: button colore
         gbc.gridx = 1;
         gbc.gridy = 8;
 
@@ -387,9 +402,9 @@ public class PannelloForm extends JPanel {
 
         gbc.insets = new Insets(0,0,0,0);
 
-        add(checkVendita, gbc);
+        add(buttonColore, gbc);
 
-        //RIGA 10: lable targa
+        //RIGA 10: lable vendita
         gbc.gridx = 0;
         gbc.gridy = 9;
 
@@ -400,11 +415,37 @@ public class PannelloForm extends JPanel {
 
         gbc.insets = new Insets(0,0,0,5);
 
-        add(labelTarga, gbc);
+        add(lableVendita, gbc);
 
-        //RIGA 10: field targa
+        //RIGA 10: checkbox vendita
         gbc.gridx = 1;
         gbc.gridy = 9;
+
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+
+        gbc.anchor = GridBagConstraints.LINE_START;
+
+        gbc.insets = new Insets(0,0,0,0);
+
+        add(checkVendita, gbc);
+
+        //RIGA 11: lable targa
+        gbc.gridx = 0;
+        gbc.gridy = 10;
+
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+
+        gbc.anchor = GridBagConstraints.LINE_END;
+
+        gbc.insets = new Insets(0,0,0,5);
+
+        add(labelTarga, gbc);
+
+        //RIGA 11: field targa
+        gbc.gridx = 1;
+        gbc.gridy = 10;
 
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
@@ -417,7 +458,7 @@ public class PannelloForm extends JPanel {
 
         //RIGA FINALE: bottone
         gbc.gridx = 0;
-        gbc.gridy = 10;
+        gbc.gridy = 11;
 
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
