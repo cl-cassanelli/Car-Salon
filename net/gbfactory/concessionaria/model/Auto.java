@@ -15,7 +15,7 @@ public class Auto {
     private int cilindrata;
     private int colore;
 
-    public Auto(int id, String marca, String modello,
+    public Auto(String marca, String modello,
     Boolean vendita, String targa, Cambio cambio,
     Bagagliaio bagagliaio, String alimentazione,
     int numeroPosti, int cilindrata, int colore){

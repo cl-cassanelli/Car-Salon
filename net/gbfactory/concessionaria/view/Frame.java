@@ -6,12 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.*;
 import javax.swing.KeyStroke;
 
+import net.gbfactory.concessionaria.controller.Controller;
+
 public class Frame extends JFrame {
 
     private TextAreaPanel textAreaPanel;
     private PannelloForm pannelloForm;
     private BarraStrumenti barraStrumenti;
     private JFileChooser fileChooser;
+    private Controller controller;
 
     public Frame(){
 
@@ -24,6 +27,8 @@ public class Frame extends JFrame {
         barraStrumenti = new BarraStrumenti();
         textAreaPanel = new TextAreaPanel();
         pannelloForm = new PannelloForm();
+
+        controller = new Controller();
 
         fileChooser = new JFileChooser();
         fileChooser.addChoosableFileFilter(new FileFilterAutomobile());
@@ -44,29 +49,13 @@ public class Frame extends JFrame {
                 Boolean vendita = fe.isVendita();
                 String targa = fe.getTarga();
                 String cambio = fe.getCambio();
-                String bagagliaio = null;
+                int bagagliaio = fe.getBagagliaio();;
                 String alimentazione = fe.getAlimentazione();
                 int numeroPosti = fe.getNumeroPosti();
                 int cilindrata = fe.getCilindrata();
                 int colore = fe.getColore();
 
-                switch (fe.getBagagliaio()) {
-                    case 0:
-                        bagagliaio = "Piccolo";
-                        break;
-                    
-                    case 1: 
-                        bagagliaio = "Medio";
-                        break;
-
-                    case 2:
-                        bagagliaio = "Grande";
-                        break;
-                }
-
-                textAreaPanel.appendiTesto("Marca: " + marca + "\nModello: " + modello + "\nVenduta: " + vendita + "\nTarga: " + targa + 
-                                            "\nCambio: " + cambio + "\nBagagliaio: " + bagagliaio + "\nAlimentazione: " + alimentazione + 
-                                            "\nPosti: " + numeroPosti + "\nCilindrata: " + cilindrata + "\nColore: " + colore + "\n");
+                controller.addAuto(marca, modello, vendita, targa, cambio, bagagliaio, alimentazione, numeroPosti, cilindrata, colore);
             }
         });
 
@@ -87,8 +76,8 @@ public class Frame extends JFrame {
         JMenu menuFile = new JMenu("File");
         menuFile.setMnemonic(KeyEvent.VK_F);
 
-        JMenuItem menuItemImporta = new JMenuItem("Importa...", new ImageIcon("./img/import.png")); //img size: 16px
-        JMenuItem menuItemEsporta = new JMenuItem("Esporta...", new ImageIcon("./img/export.png")); //img size: 16px
+        JMenuItem menuItemImporta = new JMenuItem("Importa...", new ImageIcon("./import.png")); //img size: 16px
+        JMenuItem menuItemEsporta = new JMenuItem("Esporta...", new ImageIcon("./export.png")); //img size: 16px
         JMenuItem menuItemEsci = new JMenuItem("Esci (X)");
         menuItemEsci.setMnemonic(KeyEvent.VK_X);
         menuItemEsci.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
