@@ -1,3 +1,4 @@
+package net.gbfactory.concessionaria.view;
 import java.util.EventObject;
 
 public class FormEvent extends EventObject {

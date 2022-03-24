@@ -1,3 +1,4 @@
+package net.gbfactory.concessionaria.view;
 import java.io.File;
 
 public class Utils {
