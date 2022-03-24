@@ -112,7 +112,11 @@ public class Frame extends JFrame {
         menuItemEsci.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                int azioneFinestra = JOptionPane.showConfirmDialog(Frame.this, "Vuoi uscire dall'applicazione?", "Chiusura Applicazione", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+               
+                if(azioneFinestra == JOptionPane.OK_OPTION){
+                    System.exit(0);
+                }
             }
         });
 
