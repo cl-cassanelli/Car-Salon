@@ -1,7 +1,9 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.*;
+import javax.swing.KeyStroke;
 
 public class Frame extends JFrame {
 
@@ -77,10 +79,13 @@ public class Frame extends JFrame {
         JMenuBar barraMenu = new JMenuBar();
 
         JMenu menuFile = new JMenu("File");
+        menuFile.setMnemonic(KeyEvent.VK_F);
 
         JMenuItem menuItemImporta = new JMenuItem("Importa...", new ImageIcon("./img/import.png")); //img size: 16px
         JMenuItem menuItemEsporta = new JMenuItem("Esporta...", new ImageIcon("./img/export.png")); //img size: 16px
-        JMenuItem menuItemEsci = new JMenuItem("Esci");
+        JMenuItem menuItemEsci = new JMenuItem("Esci (X)");
+        menuItemEsci.setMnemonic(KeyEvent.VK_X);
+        menuItemEsci.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
 
         menuFile.add(menuItemImporta);
         menuFile.add(menuItemEsporta);
@@ -104,7 +109,15 @@ public class Frame extends JFrame {
             }
         });
 
+        menuItemEsci.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
         menuMostra.add(menuItemProblemi);
+
         menuMostra.add(menuItemMostraForm);
 
         menuFinestra.add(menuMostra);

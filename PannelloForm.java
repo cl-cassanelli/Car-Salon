@@ -1,5 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.Border;
+
+import java.awt.event.KeyEvent;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.*;
 import java.awt.*;
@@ -57,6 +60,9 @@ public class PannelloForm extends JPanel {
         //Marca
         labelMarca = new JLabel("Marca: ");
         fieldMarca = new JTextField(15);
+
+        labelMarca.setLabelFor(fieldMarca);
+        labelMarca.setDisplayedMnemonic(KeyEvent.VK_M);
 
         //Modello
         labelModello = new JLabel("Modello: ");
@@ -157,6 +163,7 @@ public class PannelloForm extends JPanel {
 
         //Bottone
         bottoneAggiungi = new JButton("Aggiungi!");
+        bottoneAggiungi.setMnemonic(KeyEvent.VK_A);
 
         bottoneAggiungi.addActionListener(new ActionListener(){
             @Override
