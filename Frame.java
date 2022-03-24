@@ -10,6 +10,7 @@ public class Frame extends JFrame {
     private TextAreaPanel textAreaPanel;
     private PannelloForm pannelloForm;
     private BarraStrumenti barraStrumenti;
+    private JFileChooser fileChooser;
 
     public Frame(){
 
@@ -22,6 +23,10 @@ public class Frame extends JFrame {
         barraStrumenti = new BarraStrumenti();
         textAreaPanel = new TextAreaPanel();
         pannelloForm = new PannelloForm();
+
+        fileChooser = new JFileChooser();
+        fileChooser.addChoosableFileFilter(new FileFilterAutomobile());
+        fileChooser.setAcceptAllFileFilterUsed(false);
 
         barraStrumenti.setTextListener(new TextListener(){
             @Override
@@ -106,6 +111,24 @@ public class Frame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem) e.getSource();
                 pannelloForm.setVisible(menuItem.isSelected());
+            }
+        });
+
+        menuItemImporta.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(fileChooser.showOpenDialog(Frame.this) == JFileChooser.APPROVE_OPTION){
+
+                }
+            }
+        });
+
+        menuItemEsporta.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(fileChooser.showSaveDialog(Frame.this) == JFileChooser.APPROVE_OPTION){
+                    
+                }
             }
         });
 
